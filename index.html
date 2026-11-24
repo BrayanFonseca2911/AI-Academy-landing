@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Campuslands AI Academy · Formación práctica en IA para empresas, equipos y profesionales</title>
+  <meta name="description" content="Campuslands AI Academy forma a empresas, equipos y profesionales en IA aplicada. Elige tu misión: Ignition (4 h), Booster (8 h), Liftoff (12 h), Odyssey (personalizado) o Nebula (pregrabado)." />
+  <meta name="theme-color" content="#050507" />
+  <meta property="og:title" content="Campuslands AI Academy · Evoluciona a la velocidad de la tecnología" />
+  <meta property="og:description" content="Formación práctica en IA con tus tareas reales desde la primera sesión." />
+  <meta property="og:image" content="assets/img/logo-vertical.webp" />
+  <link rel="icon" type="image/webp" href="assets/img/casco-white.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" />
+  <link rel="preload" as="image" href="assets/img/max-presentando.webp" fetchpriority="high" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="#inicio" aria-label="Campuslands AI Academy, volver al inicio">
+        <img src="assets/img/logo-horizontal-white.webp" width="560" height="126" alt="Campuslands AI Academy" />
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Principal">
+        <ul>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#herramientas">Herramientas</a></li>
+          <li><a href="#planes">Planes</a></li>
+          <li><a href="#por-que-ahora">¿Por qué ahora?</a></li>
+          <li><a href="#casos-uso">Casos de uso</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+          <li><a href="https://campuslands.aiacademy.com.co/diagnostico">Diagnóstico</a></li>
+          <li><a href="https://campuslands.aiacademy.com.co/certificado">Certificado</a></li>
+        </ul>
+        <a class="btn btn-primary btn-sm nav-cta" href="https://campuslands.aiacademy.com.co/inscripcion">Inscríbete</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span class="sr-only">Abrir menú</span>
+        <span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+    <!-- Indicador de progreso del viaje (móvil) -->
+    <div class="trip-bar" aria-hidden="true">
+      <div class="trip-bar-fill"></div>
+      <span class="trip-bar-label">T-0 · Cabina</span>
+    </div>
+  </header>
+
+  <!-- ===================== RIEL DE LA MISIÓN (escritorio) ===================== -->
+  <nav class="mission-rail" aria-label="Progreso de la misión">
+    <div class="rail-track" aria-hidden="true"><div class="rail-fill"></div><img class="rail-ship" src="assets/img/casco-white.webp" alt="" width="32" height="26" /></div>
+    <ol>
+      <li><a href="#inicio" data-stage="inicio"><span class="rail-dot"></span><span class="rail-label">T-0 · Cabina</span></a></li>
+      <li><a href="#beneficios" data-stage="beneficios"><span class="rail-dot"></span><span class="rail-label">01 · Preparación</span></a></li>
+      <li><a href="#herramientas" data-stage="herramientas"><span class="rail-dot"></span><span class="rail-label">02 · Constelación</span></a></li>
+      <li><a href="#planes" data-stage="planes"><span class="rail-dot"></span><span class="rail-label">03 · Misiones</span></a></li>
+      <li><a href="#por-que-ahora" data-stage="por-que-ahora"><span class="rail-dot"></span><span class="rail-label">04 · Ventana</span></a></li>
+      <li><a href="#casos-uso" data-stage="casos-uso"><span class="rail-dot"></span><span class="rail-label">05 · Aterrizaje</span></a></li>
+      <li><a href="#resenas" data-stage="resenas"><span class="rail-dot"></span><span class="rail-label">06 · Bitácora</span></a></li>
+      <li><a href="#faqs" data-stage="faqs"><span class="rail-dot"></span><span class="rail-label">07 · Control</span></a></li>
+      <li><a href="#despegue" data-stage="despegue"><span class="rail-dot"></span><span class="rail-label">08 · Despegue</span></a></li>
+    </ol>
+  </nav>
+
+  <main id="contenido">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="inicio" data-stage-name="T-0 · Cabina" aria-labelledby="hero-title">
+      <canvas class="starfield" aria-hidden="true"></canvas>
+      <div class="halo halo-tr" aria-hidden="true"></div>
+      <div class="halo halo-bl" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="pill">Campuslands AI Academy</p>
+          <h1 id="hero-title" class="display">Evoluciona a la velocidad de la <span class="hl">tecnología</span>.</h1>
+          <p class="lead hero-lead" data-hero-lead>Formación práctica en IA para empresas, equipos y profesionales. Trabajamos con tus tareas reales desde la primera sesión, con herramientas que vas a seguir usando.</p>
+
+          <fieldset class="persona-picker">
+            <legend>Antes de despegar, ¿quién eres?</legend>
+            <div class="persona-options" role="radiogroup">
+              <button type="button" class="persona" role="radio" aria-checked="false" data-persona="empresa">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V7l6-4v4l6-4v18M15 21h6V11l-6-3M7 12h2M7 16h2M11 12h2M11 16h2"/></svg>
+                Empresa
+              </button>
+              <button type="button" class="persona" role="radio" aria-checked="false" data-persona="lider">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="10" r="2"/><circle cx="19" cy="10" r="2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6M1.5 19c0-2 1.6-3.6 3.5-3.6M22.5 19c0-2-1.6-3.6-3.5-3.6"/></svg>
+                Líder de equipo
+              </button>
+              <button type="button" class="persona" role="radio" aria-checked="false" data-persona="independiente">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 20h20M12 9v4M10 11h4"/></svg>
+                Independiente
+              </button>
+            </div>
+          </fieldset>
+
+          <ul class="hero-points" data-hero-points aria-live="polite">
+            <li>Sesiones de 4, 8 y 12 horas</li>
+            <li>Presencial o virtual</li>
+            <li>Certificado por horas cursadas</li>
+          </ul>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-lg" href="#planes" data-hero-cta>Ver planes <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+            <a class="btn btn-ghost btn-lg" href="https://wa.me/573052105674?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20curso%20de%20IA%20de%20Campuslands%20AI%20Academy" target="_blank" rel="noopener">Habla con un especialista</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit orbit-1"><span></span></div>
+          <div class="orbit orbit-2"><span></span></div>
+          <div class="max-float" data-parallax="0.6">
+            <img class="max max-active" data-max="default" src="assets/img/max-presentando.webp" width="520" height="731" alt="" fetchpriority="high" />
+            <img class="max" data-max="empresa" src="assets/img/max-explicando.webp" width="436" height="763" alt="" loading="lazy" />
+            <img class="max" data-max="lider" src="assets/img/max-aprobando.webp" width="395" height="763" alt="" loading="lazy" />
+            <img class="max" data-max="independiente" src="assets/img/max-trabajando.webp" width="484" height="713" alt="" loading="lazy" />
+          </div>
+          <div class="hud-pair">
+            <div class="hud hud-1" data-parallax="1.2"><span class="hud-k">Misión</span><span class="hud-v" data-hud-mission>Por definir</span></div>
+            <div class="hud hud-2" data-parallax="-0.9"><span class="hud-k">Tripulación</span><span class="hud-v" data-hud-crew>Tú</span></div>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#beneficios">
+        <span>Desliza para iniciar el despegue</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- ===================== BENEFICIOS ===================== -->
+    <section class="section" id="beneficios" data-stage-name="01 · Preparación" aria-labelledby="beneficios-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="pill">Fase 01 · Preparación</p>
+          <h2 id="beneficios-title">Lo que llevas a bordo desde la <span class="hl">primera sesión</span>.</h2>
+          <p class="lead">Usar ChatGPT no significa saber IA. Aquí aprendes a integrarla en tu trabajo, con ejercicios que parten de una tarea que tu equipo ya hace.</p>
+        </header>
+
+        <div class="benefits">
+          <article class="card benefit reveal">
+            <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5l8 4 8-4v14l-8 4-8-4z"/><path d="M12 9v14"/></svg></span>
+            <h3>Formación práctica</h3>
+            <p>Sesiones de 4, 8 y 12 horas con casos reales de tu negocio. Se aprende haciendo.</p>
+          </article>
+          <article class="card benefit reveal">
+            <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 14l2.5 2.5L16 11"/></svg></span>
+            <h3>Entregables listos</h3>
+            <p>Banco de prompts, guías operativas y agentes base adaptados a tu industria.</p>
+          </article>
+          <article class="card benefit reveal">
+            <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span>
+            <h3>Soporte continuo</h3>
+            <p>Comunidad privada de WhatsApp y soporte posventa para resolver tus dudas.</p>
+          </article>
+          <article class="card benefit reveal">
+            <span class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
+            <h3>Rutas flexibles</h3>
+            <p>Presencial o virtual, por niveles y con resultados que puedes medir.</p>
+          </article>
+        </div>
+
+        <ul class="proof-strip reveal" aria-label="Cómo enseñamos">
+          <li><strong>Problemas reales.</strong> Cada ejercicio parte de una tarea de tu equipo, no de ejemplos genéricos.</li>
+          <li><strong>Enseñan quienes construyen.</strong> Nuestros trainers crean asistentes y automatizaciones todos los días.</li>
+          <li><strong>Práctica desde el inicio.</strong> Sales con herramientas que puedes seguir usando.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== HERRAMIENTAS ===================== -->
+    <section class="section section-tools" id="herramientas" data-stage-name="02 · Constelación" aria-labelledby="herramientas-title">
+      <div class="halo halo-tr" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="pill">Fase 02 · Constelación</p>
+          <h2 id="herramientas-title">14 herramientas de IA. Una <span class="hl">constelación</span> para tu trabajo.</h2>
+          <p class="lead">Toca cada estrella para ver qué haces con ella. Filtra por la tarea que quieres resolver.</p>
+        </header>
+
+        <div class="tool-filters reveal" role="toolbar" aria-label="Filtrar herramientas">
+          <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">Todas</button>
+          <button type="button" class="chip" data-filter="asistentes" aria-pressed="false">Asistentes</button>
+          <button type="button" class="chip" data-filter="automatizacion" aria-pressed="false">Automatización</button>
+          <button type="button" class="chip" data-filter="investigacion" aria-pressed="false">Investigación</button>
+          <button type="button" class="chip" data-filter="productividad" aria-pressed="false">Productividad</button>
+          <button type="button" class="chip" data-filter="creacion" aria-pressed="false">Creación</button>
+          <button type="button" class="chip" data-filter="codigo" aria-pressed="false">Código</button>
+        </div>
+
+        <div class="constellation-wrap reveal">
+          <div class="constellation" data-constellation>
+            <svg class="constellation-lines" aria-hidden="true" preserveAspectRatio="none"></svg>
+            <!-- Las estrellas se generan con JS; abajo hay respaldo sin JS -->
+          </div>
+          <aside class="tool-panel" aria-live="polite" data-tool-panel>
+            <div class="tool-panel-empty">
+              <img src="assets/img/visor-idea.webp" width="240" height="206" alt="" loading="lazy" />
+              <p><strong>Elige una estrella.</strong> Te contamos para qué sirve cada herramienta y qué haces con ella en la formación.</p>
+            </div>
+          </aside>
+        </div>
+        <noscript>
+          <p class="noscript-tools">ChatGPT · Make · Gemini · Claude · Microsoft Copilot · GitHub Copilot · Midjourney · Notion AI · Zapier · Perplexity · NotebookLM · Read AI · ElevenLabs · HeyGen</p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ===================== PLANES ===================== -->
+    <section class="section section-plans" id="planes" data-stage-name="03 · Misiones" aria-labelledby="planes-title">
+      <div class="halo halo-bl" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="pill">Fase 03 · Elige tu misión</p>
+          <h2 id="planes-title">Cinco misiones. Una es <span class="hl">la tuya</span>.</h2>
+          <p class="lead">Responde tres preguntas y calculamos tu trayectoria. Si ya sabes cuál quieres, baja directo a las misiones.</p>
+        </header>
+
+        <!-- Recomendador -->
+        <div class="recommender card reveal" data-recommender>
+          <div class="rec-top">
+            <p class="rec-kicker">Calculadora de trayectoria</p>
+            <ol class="rec-steps" aria-label="Progreso del cuestionario">
+              <li class="is-current"><span class="sr-only">Pregunta </span>1</li>
+              <li>2</li>
+              <li>3</li>
+            </ol>
+          </div>
+
+          <form class="rec-form" novalidate>
+            <fieldset class="rec-q is-active" data-q="1">
+              <legend>¿Quién se va a formar?</legend>
+              <div class="rec-options">
+                <label class="opt"><input type="radio" name="q1" value="solo" /><span>Solo yo</span></label>
+                <label class="opt"><input type="radio" name="q1" value="equipo" /><span>Un equipo de trabajo</span></label>
+                <label class="opt"><input type="radio" name="q1" value="empresa" /><span>Varias áreas o toda la empresa</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="rec-q" data-q="2">
+              <legend>¿Cuánto tiempo pueden dedicarle?</legend>
+              <div class="rec-options">
+                <label class="opt"><input type="radio" name="q2" value="4" /><span>Medio día · 4 h</span></label>
+                <label class="opt"><input type="radio" name="q2" value="8" /><span>Un día · 8 h</span></label>
+                <label class="opt"><input type="radio" name="q2" value="12" /><span>Día y medio · 12 h</span></label>
+                <label class="opt"><input type="radio" name="q2" value="ritmo" /><span>A mi ritmo, cuando pueda</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="rec-q" data-q="3">
+              <legend>¿Qué quieres lograr primero?</legend>
+              <div class="rec-options">
+                <label class="opt"><input type="radio" name="q3" value="entender" /><span>Entender la IA y usarla a diario</span></label>
+                <label class="opt"><input type="radio" name="q3" value="agentes" /><span>Crear agentes para mi rol</span></label>
+                <label class="opt"><input type="radio" name="q3" value="automatizar" /><span>Automatizar procesos reales</span></label>
+                <label class="opt"><input type="radio" name="q3" value="medida" /><span>Un programa a la medida de mi empresa</span></label>
+              </div>
+            </fieldset>
+          </form>
+
+          <div class="rec-result" data-rec-result hidden tabindex="-1">
+            <img class="rec-max" src="assets/img/visor-motivado.webp" width="240" height="201" alt="" loading="lazy" />
+            <div>
+              <p class="rec-kicker">Tu misión recomendada</p>
+              <p class="rec-name"><span data-rec-name>Booster</span> <span class="rec-dur" data-rec-dur>8 horas</span></p>
+              <p class="rec-why" data-rec-why></p>
+              <div class="rec-actions">
+                <a class="btn btn-primary" data-rec-cta href="https://campuslands.aiacademy.com.co/inscripcion">Inscríbete en Booster</a>
+                <button type="button" class="btn btn-ghost" data-rec-see>Ver qué incluye</button>
+                <button type="button" class="btn-link" data-rec-reset>Volver a calcular</button>
+              </div>
+            </div>
+          </div>
+          <div class="rec-nav">
+            <button type="button" class="btn-link" data-rec-back hidden>← Anterior</button>
+          </div>
+        </div>
+
+        <!-- Misiones -->
+        <div class="missions" data-missions>
+          <article class="mission reveal" id="mision-ignition" data-plan="ignition" style="--alt:25%">
+            <div class="mission-head">
+              <span class="mission-stage">Fase 01</span>
+              <h3>Ignition</h3>
+              <p class="mission-dur"><strong>4 horas</strong></p>
+            </div>
+            <div class="altimeter" aria-hidden="true"><span></span></div>
+            <ul class="mission-list">
+              <li>Comprende el impacto real de la IA en tu industria</li>
+              <li>Domina la IA generativa de tu elección como asistente diario</li>
+              <li>Conoce las 10 herramientas de IA más relevantes</li>
+              <li>Aprende a crear agentes básicos de IA en vivo</li>
+            </ul>
+            <a class="btn btn-outline" href="https://campuslands.aiacademy.com.co/inscripcion">Inscríbete en Ignition</a>
+          </article>
+
+          <article class="mission reveal" id="mision-booster" data-plan="booster" style="--alt:50%">
+            <div class="mission-head">
+              <span class="mission-stage">Fase 02</span>
+              <h3>Booster</h3>
+              <p class="mission-dur"><strong>8 horas</strong></p>
+            </div>
+            <div class="altimeter" aria-hidden="true"><span></span></div>
+            <ul class="mission-list">
+              <li>Todo Ignition con enfoque profesional avanzado</li>
+              <li>Técnicas de prompting para resultados precisos</li>
+              <li>Domina 2 herramientas de IA a tu elección</li>
+              <li>Construye agentes personalizados para tu rol</li>
+            </ul>
+            <a class="btn btn-outline" href="https://campuslands.aiacademy.com.co/inscripcion">Inscríbete en Booster</a>
+          </article>
+
+          <article class="mission reveal" id="mision-liftoff" data-plan="liftoff" style="--alt:75%">
+            <div class="mission-head">
+              <span class="mission-stage">Fase 03</span>
+              <h3>Liftoff</h3>
+              <p class="mission-dur"><strong>12 horas</strong></p>
+            </div>
+            <div class="altimeter" aria-hidden="true"><span></span></div>
+            <ul class="mission-list">
+              <li>Todo Booster enfocado en escalar tu operación</li>
+              <li>Domina una herramienta de IA adicional elegida</li>
+              <li>Aprende a automatizar procesos reales con n8n</li>
+              <li>Diseña flujos automáticos aplicados a tu negocio</li>
+            </ul>
+            <a class="btn btn-outline" href="https://campuslands.aiacademy.com.co/inscripcion">Inscríbete en Liftoff</a>
+          </article>
+
+          <article class="mission reveal" id="mision-odyssey" data-plan="odyssey" style="--alt:100%">
+            <div class="mission-head">
+              <span class="mission-stage">Expedición</span>
+              <h3>Odyssey</h3>
+              <p class="mission-dur"><strong>Personalizado</strong></p>
+            </div>
+            <div class="altimeter" aria-hidden="true"><span></span></div>
+            <ul class="mission-list">
+              <li>Programa 100 % personalizado para tu empresa</li>
+              <li>Elige herramientas, duración y profundidad</li>
+              <li>Casos de uso reales según tu industria y roles</li>
+              <li>Acompañamiento estratégico con sesiones tácticas</li>
+            </ul>
+            <a class="btn btn-outline" href="https://campuslands.aiacademy.com.co/inscripcion">Inscríbete en Odyssey</a>
+          </article>
+
+          <article class="mission mission-orbit reveal" id="mision-nebula" data-plan="nebula" style="--alt:100%">
+            <div class="mission-head">
+              <span class="mission-stage">Órbita</span>
+              <h3>Nebula</h3>
+              <p class="mission-dur"><strong>Pregrabado</strong></p>
+            </div>
+            <div class="altimeter" aria-hidden="true"><span></span></div>
+            <ul class="mission-list">
+              <li>Contenidos organizados por niveles de aprendizaje</li>
+              <li>Evaluaciones continuas para medir el progreso</li>
+              <li>Acceso flexible 24/7 a materiales, recursos y actualizaciones</li>
+              <li>Comunidad activa de soporte y aprendizaje colaborativo</li>
+            </ul>
+            <a class="btn btn-outline" href="https://campuslands.aiacademy.com.co/inscripcion">Accede a Nebula</a>
+          </article>
+        </div>
+        <p class="plans-note reveal">¿Dudas entre dos misiones? <a href="https://wa.me/573052105674?text=Hola%2C%20quiero%20ayuda%20para%20elegir%20mi%20misi%C3%B3n%20en%20Campuslands%20AI%20Academy" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> y te ayudamos a elegir.</p>
+      </div>
+    </section>
+
+    <!-- ===================== POR QUÉ AHORA ===================== -->
+    <section class="section section-now" id="por-que-ahora" data-stage-name="04 · Ventana" aria-labelledby="ahora-title">
+      <div class="container now-grid">
+        <div class="now-copy">
+          <header class="section-head section-head-left reveal">
+            <p class="pill">Fase 04 · Ventana de lanzamiento</p>
+            <h2 id="ahora-title">El costo de esperar <span class="hl">se acumula</span>.</h2>
+          </header>
+          <ol class="now-list">
+            <li class="reveal"><span class="step-num">1</span><div><h3>Más horas manuales</h3><p>Más retrabajo frente a competidores que ya automatizan.</p></div></li>
+            <li class="reveal"><span class="step-num">2</span><div><h3>Tu equipo busca fuera</h3><p>Las personas quieren herramientas que les liberen tiempo para lo estratégico. Si no se las das, las buscarán por su cuenta.</p></div></li>
+            <li class="reveal"><span class="step-num">3</span><div><h3>Valor que no se acumula</h3><p>Cada semana sin práctica son prompts, agentes y casos que tu equipo todavía no tiene listos.</p></div></li>
+          </ol>
+        </div>
+
+        <div class="calc card reveal" data-calc>
+          <p class="rec-kicker">Haz la cuenta con tus números</p>
+          <div class="calc-field">
+            <label for="calc-people">Personas en tu equipo <output for="calc-people" data-out-people>5</output></label>
+            <input type="range" id="calc-people" min="1" max="100" value="5" />
+          </div>
+          <div class="calc-field">
+            <label for="calc-hours">Horas a la semana en tareas repetitivas, por persona <output for="calc-hours" data-out-hours>4</output></label>
+            <input type="range" id="calc-hours" min="1" max="20" value="4" />
+          </div>
+          <div class="calc-result">
+            <p class="calc-num"><span data-calc-total>920</span> <small>horas al año</small></p>
+            <p class="calc-note">Es el tiempo que tu equipo dedica hoy a copiar, pegar, redactar lo mismo y pasar datos de un lado a otro. En la formación aprendes a identificar cuáles de esas tareas puedes apoyar con IA.</p>
+            <p class="calc-src">Cálculo: personas × horas semanales × 46 semanas laborales. Son tus datos, no una promesa de ahorro.</p>
+          </div>
+          <a class="btn btn-primary" href="https://campuslands.aiacademy.com.co/diagnostico">Haz el diagnóstico de IA de tu empresa</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CASOS DE USO ===================== -->
+    <section class="section section-cases" id="casos-uso" data-stage-name="05 · Aterrizaje" aria-labelledby="casos-title">
+      <div class="halo halo-tr" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="pill">Fase 05 · Aterrizaje</p>
+          <h2 id="casos-title">Así cambia el trabajo <span class="hl">después</span> de la misión.</h2>
+          <p class="lead">Elige un perfil y desliza para ver el antes y el después.</p>
+        </header>
+
+        <div class="case-tabs reveal" role="tablist" aria-label="Perfiles">
+          <button type="button" role="tab" class="chip is-active" aria-selected="true" data-case="0" id="tab-case-0" aria-controls="case-panel">Empresario</button>
+          <button type="button" role="tab" class="chip" aria-selected="false" data-case="1" id="tab-case-1" aria-controls="case-panel" tabindex="-1">Director(a) de innovación</button>
+          <button type="button" role="tab" class="chip" aria-selected="false" data-case="2" id="tab-case-2" aria-controls="case-panel" tabindex="-1">Profesional independiente</button>
+          <button type="button" role="tab" class="chip" aria-selected="false" data-case="3" id="tab-case-3" aria-controls="case-panel" tabindex="-1">Líder de RR. HH.</button>
+        </div>
+
+        <div class="compare-controls reveal" role="group" aria-label="Modo de visualización del caso">
+          <button type="button" class="compare-QuickBtn" data-compare-mode="before">Antes · Sin IA</button>
+          <button type="button" class="compare-QuickBtn is-active" data-compare-mode="split">Comparar ambos</button>
+          <button type="button" class="compare-QuickBtn" data-compare-mode="after">Después · Con AI Academy</button>
+        </div>
+
+        <div class="compare-stage reveal" id="case-panel" role="tabpanel" aria-labelledby="tab-case-0" data-compare data-mode="split" style="--mix:50">
+          <div class="compare-meter">
+            <span class="compare-meter-label">Nivel de adopción: <strong data-compare-status>Comparando Antes vs. Después</strong></span>
+            <div class="compare-slider-wrap">
+              <span class="slider-end">Antes</span>
+              <label class="sr-only" for="compare-range">Desliza entre el Antes y el Después</label>
+              <input class="compare-range" id="compare-range" type="range" min="0" max="100" value="50" />
+              <span class="slider-end slider-end-after">Después</span>
+            </div>
+          </div>
+
+          <div class="compare-grid">
+            <article class="compare-panel compare-panel-before" data-panel="before">
+              <header class="compare-panel-head">
+                <img src="assets/img/visor-cansado.webp" width="240" height="208" alt="" loading="lazy" />
+                <div>
+                  <span class="compare-tag">Antes · Sin IA aplicada</span>
+                  <h3 class="compare-role" data-case-role-before>Empresario / Emprendedor</h3>
+                </div>
+              </header>
+              <p class="compare-text" data-case-before>Procesos comerciales manuales, lanzamientos lentos y decisiones a ciegas por falta de contenido y reportes actualizados.</p>
+              <ul class="compare-pills" data-case-pains>
+                <li>Horas en tareas manuales</li>
+                <li>Reportes tardíos</li>
+                <li>Fricción comercial</li>
+              </ul>
+            </article>
+
+            <div class="compare-bridge" aria-hidden="true">
+              <button type="button" class="compare-swap-btn" data-compare-toggle title="Alternar entre Antes y Después">
+                <span>⚡</span>
+              </button>
+            </div>
+
+            <article class="compare-panel compare-panel-after" data-panel="after">
+              <header class="compare-panel-head">
+                <img src="assets/img/visor-idea.webp" width="240" height="206" alt="" loading="lazy" />
+                <div>
+                  <span class="compare-tag">Después · Con AI Academy</span>
+                  <h3 class="compare-role" data-case-role-after>Empresario con asistentes de IA</h3>
+                </div>
+              </header>
+              <p class="compare-text" data-case-after>Asistentes de IA que crean correos, propuestas y reportes en minutos, con métricas claras para escalar tus ventas sin fricción.</p>
+              <ul class="compare-pills compare-pills-after" data-case-gains>
+                <li>Propuestas en minutos</li>
+                <li>Métricas al día</li>
+                <li>Ventas escalables</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RESEÑAS ===================== -->
+    <section class="section section-reviews" id="resenas" data-stage-name="06 · Bitácora" aria-labelledby="resenas-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="pill">Bitácora de vuelo</p>
+          <h2 id="resenas-title">Equipos que ya <span class="hl">despegaron</span>.</h2>
+        </header>
+        <div class="reviews" tabindex="0" aria-label="Testimonios, desplázate horizontalmente">
+          <figure class="card review reveal">
+            <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+            <blockquote>«AI Academy nos dio herramientas concretas para acelerar nuestros procesos. El enfoque práctico nos permitió aplicar lo aprendido desde el primer día».</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">LG</span><span><strong>Laura Gómez</strong><small>Tech Lead en InnovApp</small></span></figcaption>
+          </figure>
+          <figure class="card review reveal">
+            <div class="stars" aria-label="4 de 5 estrellas">★★★★<span class="star-off">★</span></div>
+            <blockquote>«La formación de 8 horas fue ideal para nuestro equipo. Los casos por industria marcaron la diferencia y resolvieron dudas específicas».</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">CH</span><span><strong>Carlos Herrera</strong><small>Director de Talento, Grupo Andino</small></span></figcaption>
+          </figure>
+          <figure class="card review reveal">
+            <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+            <blockquote>«Más que un curso, fue una experiencia de estrategia digital. Las automatizaciones de seguimiento nos ahorran horas cada semana».</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">JR</span><span><strong>Juliana Restrepo</strong><small>Fundadora de CrecePyme</small></span></figcaption>
+          </figure>
+          <figure class="card review reveal">
+            <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+            <blockquote>«Excelente acompañamiento. Adaptaron el contenido a educación superior y nos dejaron material listo para incorporar en clase».</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">ML</span><span><strong>Miguel Ángel López</strong><small>Profesor universitario</small></span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQs ===================== -->
+    <section class="section section-faqs" id="faqs" data-stage-name="07 · Control" aria-labelledby="faqs-title">
+      <div class="container faq-grid">
+        <div class="faq-side reveal">
+          <p class="pill">Centro de control</p>
+          <h2 id="faqs-title">Preguntas antes del <span class="hl">despegue</span>.</h2>
+          <img src="assets/img/visor-analitico.webp" width="240" height="197" alt="" loading="lazy" />
+          <p>¿Otra duda? Te respondemos por WhatsApp.</p>
+          <a class="btn btn-ghost" href="https://wa.me/573052105674?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20curso%20de%20IA%20de%20Campuslands%20AI%20Academy" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+        </div>
+        <div class="faq-list">
+          <details class="faq reveal" open>
+            <summary>¿Qué modalidades de formación ofrecen?</summary>
+            <p>Tres: presencial en las instalaciones de Campuslands, presencial en las instalaciones de tu empresa y virtual. Todas mantienen la misma calidad y el mismo contenido.</p>
+          </details>
+          <details class="faq reveal">
+            <summary>¿Cómo se eligen las fechas?</summary>
+            <p>Si te formas de manera individual, eliges la fecha que mejor te convenga. Para empresas, coordinamos las fechas por WhatsApp para encontrar el momento ideal para todo el equipo.</p>
+          </details>
+          <details class="faq reveal">
+            <summary>¿Necesito conocimientos previos en IA?</summary>
+            <p>No. Los cursos van desde el «despertar digital» hasta niveles avanzados y se adaptan al nivel de cada participante.</p>
+          </details>
+          <details class="faq reveal">
+            <summary>¿Qué certificación recibo?</summary>
+            <p>Una certificación oficial por las horas cursadas, que valida tu conocimiento en las herramientas de IA que aprendiste. Puedes consultarla en <a href="https://campuslands.aiacademy.com.co/certificado">Certificado</a>.</p>
+          </details>
+          <details class="faq reveal">
+            <summary>¿Qué materiales están incluidos?</summary>
+            <p>Todos los cursos incluyen un banco de prompts especializado. Los de 8 y 12 horas incluyen además agentes personalizados y automatizaciones acordadas según tus necesidades.</p>
+          </details>
+          <details class="faq reveal">
+            <summary>¿Cómo funcionan los pagos?</summary>
+            <p>Pronto podrás pagar con Wompi desde la página de planes. Mientras tanto, escríbenos por WhatsApp y coordinamos el pago contigo.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="section section-launch" id="despegue" data-stage-name="08 · Despegue" aria-labelledby="despegue-title">
+      <div class="container">
+        <div class="launch-block reveal">
+          <div class="launch-copy">
+            <p class="launch-kicker">T-0 · Listo para despegar</p>
+            <h2 id="despegue-title">Tu primera misión con IA empieza con una inscripción.</h2>
+            <p>Elige tu fecha, tu modalidad y tu misión. Si prefieres conversar antes, un especialista te ayuda a elegir.</p>
+            <div class="launch-ctas">
+              <a class="btn btn-white btn-lg" href="https://campuslands.aiacademy.com.co/inscripcion">Inscríbete ahora</a>
+              <a class="btn btn-ghost-white btn-lg" href="https://wa.me/573052105674?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20curso%20de%20IA%20de%20Campuslands%20AI%20Academy" target="_blank" rel="noopener">Habla con un especialista</a>
+            </div>
+          </div>
+          <img class="launch-max" src="assets/img/max-cafe.webp" width="436" height="791" alt="" loading="lazy" />
+        </div>
+        <div class="launch-links">
+          <a class="card link-card reveal" href="https://campuslands.aiacademy.com.co/diagnostico">
+            <span class="link-k">¿Empresa?</span>
+            <span class="link-t">Haz el diagnóstico de IA <small>7 a 10 minutos</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="card link-card reveal" href="https://campuslands.aiacademy.com.co/certificado">
+            <span class="link-k">¿Ya te formaste?</span>
+            <span class="link-t">Consulta tu certificado <small>Con tu número de cédula</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/logo-vertical.webp" width="480" height="356" alt="Campuslands AI Academy" loading="lazy" />
+        <p>Formamos empresas, equipos y personas que trabajan con IA.</p>
+      </div>
+      <nav aria-label="Secciones">
+        <h3>Explora</h3>
+        <ul>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#herramientas">Herramientas</a></li>
+          <li><a href="#planes">Planes</a></li>
+          <li><a href="#por-que-ahora">¿Por qué ahora?</a></li>
+          <li><a href="#casos-uso">Casos de uso</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Accesos">
+        <h3>Accesos</h3>
+        <ul>
+          <li><a href="https://campuslands.aiacademy.com.co/inscripcion">Inscripción</a></li>
+          <li><a href="https://campuslands.aiacademy.com.co/diagnostico">Diagnóstico</a></li>
+          <li><a href="https://campuslands.aiacademy.com.co/certificado">Certificado</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Contacto</h3>
+        <a class="footer-wa" href="https://wa.me/573052105674?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20curso%20de%20IA%20de%20Campuslands%20AI%20Academy" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg>
+          <span><small>WhatsApp</small>Habla con un especialista</span>
+        </a>
+        <p class="footer-ig">Instagram: <a href="https://www.instagram.com/ai.campuslands/" target="_blank" rel="noopener">@ai.campuslands</a></p>
+      </div>
+    </div>
+    <div class="container footer-legal">
+      <p>© <span data-year>2026</span> Campuslands AI Academy. Todos los derechos reservados.</p>
+      <p><a href="#">Política de privacidad</a> · <a href="#">Términos</a></p>
+    </div>
+  </footer>
+
+  <!-- ===================== DOCK DE CTA (siempre a mano) ===================== -->
+  <div class="cta-dock" data-dock aria-label="Acciones rápidas">
+    <a class="dock-wa" href="https://wa.me/573052105674?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20curso%20de%20IA%20de%20Campuslands%20AI%20Academy" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8c-1-.4-1.9-1.3-2.3-2.3l.8-1-1-2z"/></svg>
+      <span class="dock-wa-label">WhatsApp</span>
+    </a>
+    <a class="btn btn-primary dock-cta" href="https://campuslands.aiacademy.com.co/inscripcion" data-dock-cta>Inscríbete</a>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
