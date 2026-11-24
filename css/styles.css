@@ -501,6 +501,25 @@ input[type="range"]:focus-visible { outline: 3px solid var(--soft); outline-offs
 }
 .compare-swap-btn:hover { transform: scale(1.1) rotate(12deg); background: var(--evox); color: var(--white); }
 
+.mobile-flip-cta {
+  display: none;
+  align-items: center; justify-content: space-between; gap: 10px;
+  width: 100%; margin-top: 6px; padding: 13px 18px;
+  border-radius: 16px; border: 1.5px solid var(--soft);
+  background: linear-gradient(90deg, var(--evox), var(--electric));
+  color: var(--white); font-weight: 700; font-size: .88rem;
+  box-shadow: 0 12px 28px -10px rgba(150, 54, 255, .85);
+  transition: transform .25s var(--ease), box-shadow .25s;
+}
+.mobile-flip-cta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.mobile-flip-cta:active { transform: scale(.98); }
+.mobile-flip-back {
+  background: rgba(5, 5, 7, .35);
+  border-color: rgba(255, 255, 255, .55);
+  justify-content: center;
+  box-shadow: none;
+}
+
 /* Estados dinámicos según modo (before / split / after) */
 .compare-stage[data-mode="before"] .compare-panel-before {
   border-color: var(--soft);
@@ -686,14 +705,38 @@ input[type="range"]:focus-visible { outline: 3px solid var(--soft); outline-offs
   .star.is-dim { display: none; }
   .tool-panel { min-height: 0; padding: 24px; }
 
-  /* Comparador Antes / Después en tablet y móvil: apilado vertical sin cortar ninguna palabra */
-  .compare-grid { grid-template-columns: 1fr; gap: 12px; }
+  /* Comparador Antes / Después en tablet y móvil:
+     Tarjeta interactiva con botón de transformación instantánea + opción de comparar ambas */
+  .compare-controls {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    background: rgba(5, 5, 7, .85); border: 1px solid var(--line);
+    padding: 5px; border-radius: 999px; gap: 4px;
+  }
+  .compare-QuickBtn {
+    border: 0; background: transparent; padding: 10px 8px;
+    font-size: .78rem; text-align: center; border-radius: 999px;
+  }
+  .compare-QuickBtn.is-active {
+    background: var(--evox); color: var(--white);
+  }
+  .compare-grid { grid-template-columns: 1fr; gap: 14px; position: relative; }
   .compare-bridge { margin: -4px 0; }
   .compare-swap-btn { width: 42px; height: 42px; font-size: 1.05rem; }
-  .compare-stage[data-mode="before"] .compare-panel-after { display: none; }
+  .mobile-flip-cta { display: inline-flex; }
+  .compare-stage[data-mode="split"] .mobile-flip-cta { display: none; }
+  .compare-stage[data-mode="before"] .compare-panel-before,
+  .compare-stage[data-mode="after"] .compare-panel-after {
+    transform: none;
+    animation: mobileCardPop .38s var(--ease);
+  }
+  .compare-stage[data-mode="before"] .compare-panel-after,
   .compare-stage[data-mode="before"] .compare-bridge { display: none; }
-  .compare-stage[data-mode="after"] .compare-panel-before { display: none; }
+  .compare-stage[data-mode="after"] .compare-panel-before,
   .compare-stage[data-mode="after"] .compare-bridge { display: none; }
+}
+@keyframes mobileCardPop {
+  from { opacity: 0; transform: translateY(10px) scale(.97); }
+  to { opacity: 1; transform: none; }
 }
 
 /* Móviles (<= 680px, incluido 375px) */

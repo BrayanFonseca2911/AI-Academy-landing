@@ -765,10 +765,39 @@
       swapBtn.addEventListener('click', () => {
         const cur = compareBox.dataset.mode;
         if (cur === 'before') setMode('after');
-        else if (cur === 'after') setMode('split');
+        else if (cur === 'after') setMode('before');
         else setMode('after');
       });
     }
-    applyMix(50);
+    $$('[data-mobile-to]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setMode(btn.dataset.mobileTo);
+      });
+    });
+
+    // Soporte swipe táctil izquierda / derecha en móvil sobre la tarjeta
+    let touchStartX = 0;
+    let touchStartY = 0;
+    compareBox.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+    compareBox.addEventListener('touchend', (e) => {
+      if (!touchStartX || e.changedTouches.length !== 1) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+        if (dx < 0) setMode('after');
+        else setMode('before');
+      }
+      touchStartX = 0;
+    }, { passive: true });
+
+    // En celular arrancamos en modo interactivo de tarjeta con foco (After/Before con 1 toque o swipe)
+    // y en computador arrancamos con las dos tarjetas cara a cara (split)
+    applyMix(window.innerWidth <= 920 ? 0 : 50);
   }
 })();
