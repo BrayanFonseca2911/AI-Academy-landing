@@ -6,10 +6,10 @@
 
 **Rediseño integral de experiencia web, identidad visual y arquitectura de conversión bajo el Manual de Marca v1.0**
 
-[![Estado](https://img.shields.io/badge/Estado-Producci%C3%B3n%20Lista-7026E8?style=for-the-badge)](#)
-[![Manual de Marca](https://img.shields.io/badge/Manual%20de%20Marca-v1.0%20%28100%25%20Fiel%29-9636FF?style=for-the-badge)](#sistema-de-identidad-visual-manual-v10)
-[![Stack](https://img.shields.io/badge/Stack-HTML5%20%C2%B7%20CSS3%20%C2%B7%20JS%20ES6+-B783FF?style=for-the-badge&logoColor=050507)](#arquitectura-y-rendimiento)
-[![Mobile First](https://img.shields.io/badge/Responsive-375px%20%E2%86%92%204K-050507?style=for-the-badge&labelColor=7026E8)](#experiencia-responsive-mobile-first)
+![Estado](https://img.shields.io/badge/Estado-Producci%C3%B3n%20Lista-7026E8?style=for-the-badge)
+![Manual de Marca](https://img.shields.io/badge/Manual%20de%20Marca-v1.0%20%28100%25%20Fiel%29-9636FF?style=for-the-badge)
+![Stack](https://img.shields.io/badge/Stack-HTML5%20%C2%B7%20CSS3%20%C2%B7%20JS%20ES6+-B783FF?style=for-the-badge&logoColor=050507)
+![Mobile First](https://img.shields.io/badge/Responsive-375px%20%E2%86%92%204K-050507?style=for-the-badge&labelColor=7026E8)
 
 <p align="center">
   <em>«No solo hablan de IA: saben enseñarla, aplicarla y llevarla a problemas reales».</em>
@@ -31,32 +31,12 @@
 
 ---
 
-## 2. Inicio Rápido
+## 2. Cómo abrir el proyecto
 
-El proyecto no requiere pasos de compilación ni instalación de paquetes externos: carga de forma instantánea en cualquier servidor estático.
+El proyecto está construido en **HTML5, CSS3 y JavaScript puro**, sin dependencias ni servidores adicionales, por lo que funciona directamente al abrirlo:
 
-### Opción A · Con Python (recomendado)
-
-```bash
-# Clonar el repositorio
-git clone <URL_DEL_REPOSITORIO>
-cd lading
-
-# Iniciar servidor local en el puerto 8080
-python -m http.server 8080
-```
-
-Abre **[http://localhost:8080](http://localhost:8080)** en tu navegador.
-
-### Opción B · Con Node.js (`npx`)
-
-```bash
-npx serve .
-```
-
-### Opción C · Apertura directa
-
-Haz doble clic sobre `index.html` o ábrelo con la extensión **Live Server** de VS Code.
+1. Descarga o clona este repositorio.
+2. Abre el archivo **`index.html`** directamente en tu navegador (doble clic), o haz clic derecho sobre `index.html` en VS Code y selecciona **Open with Live Server**.
 
 ---
 
