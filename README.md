@@ -115,26 +115,19 @@ La interfaz fue diseñada y probada desde **`375 px` de ancho** hasta monitores 
 ```text
 lading/
 ├── index.html                  # Documento semántico HTML5 con las 9 secciones del reto
-├── README.md                   # Documentación técnica y de diseño
+├── admin.html                  # Panel de administración para seguimiento de interesados (Reto 4)
+├── README.md                   # Documentación de diseño y arquitectura de la landing
+├── README_RETO_4.md            # Entregable específico del Reto 4 (Automatización n8n, Telegram y Panel Admin)
+├── n8n/
+│   └── flujo-telegram-leads.json
 ├── css/
 │   └── styles.css              # Sistema de diseño (Variables CSS, Manual v1.0, Responsive, Reduced Motion)
 ├── js/
-│   └── main.js                 # Motor interactivo (Hero, Scroll, Constelación, Recomendador, Calculadora, Casos)
+│   ├── leads-store.js          # Almacenamiento, validación, auditoría e integración Webhook n8n
+│   ├── main.js                 # Motor interactivo de la landing
+│   └── admin.js                # Controlador del panel de administración
 └── assets/
     ├── img/                    # Activos oficiales extraídos del manual y optimizados en WebP
-    │   ├── logo-vertical.webp
-    │   ├── logo-horizontal-white.webp
-    │   ├── casco-white.webp
-    │   ├── max-presentando.webp
-    │   ├── max-aprobando.webp
-    │   ├── max-explicando.webp
-    │   ├── max-trabajando.webp
-    │   ├── max-cafe.webp
-    │   ├── max-descansando.webp
-    │   ├── visor-cansado.webp
-    │   ├── visor-motivado.webp
-    │   ├── visor-analitico.webp
-    │   └── visor-idea.webp
     └── tools/                  # Iconos vectoriales SVG de las 14 herramientas de IA
 ```
 

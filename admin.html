@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de Administración · Seguimiento de Interesados · Campuslands AI Academy</title>
+  <meta name="theme-color" content="#050507" />
+  <link rel="icon" type="image/webp" href="assets/img/casco-white.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .admin-body { min-height: 100svh; display: flex; flex-direction: column; padding-top: var(--header-h); }
+    .admin-main { flex: 1; padding: 36px 0 80px; }
+    .admin-header-actions { display: flex; align-items: center; gap: 10px; }
+    .admin-topbar {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line);
+    }
+    .admin-topbar h1 { font-size: clamp(1.35rem, 3vw, 2.1rem); margin-top: 4px; }
+    .admin-user-bar {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+      padding: 8px 14px; border-radius: 18px;
+      background: var(--soft-10); border: 1px solid var(--line);
+      max-width: 100%;
+    }
+    .admin-user-bar label { font-size: .75rem; color: var(--muted); font-weight: 600; }
+    .admin-switcher {
+      background: var(--black); color: var(--white);
+      border: 1px solid var(--soft-30); border-radius: 10px;
+      padding: 6px 10px; font: inherit; font-size: .84rem; font-weight: 600;
+      max-width: 100%; text-overflow: ellipsis; overflow: hidden;
+    }
+
+    /* Login card */
+    .login-wrap { max-width: 520px; margin: 40px auto; padding: 32px; }
+    .login-head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+    .login-head img { width: 72px; flex: none; }
+    .quick-admins { display: flex; flex-direction: column; gap: 8px; margin: 16px 0 20px; }
+    .quick-admin-btn {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 10px 14px; border-radius: 12px;
+      border: 1px solid var(--line); background: rgba(5, 5, 7, .65);
+      text-align: left; font-size: .85rem; transition: border-color .2s, background-color .2s;
+    }
+    .quick-admin-btn:hover { border-color: var(--soft); background: var(--soft-10); }
+    .quick-admin-btn strong { color: var(--white); display: block; }
+    .quick-admin-btn small { color: var(--muted); font-size: .76rem; display: block; word-break: break-word; }
+    .quick-admin-tag {
+      font-size: .72rem; font-weight: 700; color: var(--soft);
+      padding: 3px 10px; border-radius: 999px; border: 1px solid var(--soft-30);
+      white-space: nowrap; flex: none;
+    }
+
+    /* KPIs */
+    .kpi-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px;
+    }
+    .kpi-card {
+      padding: 16px 18px; border-radius: 20px;
+      background: var(--soft-10); border: 1px solid var(--line);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .kpi-label { font-size: .74rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 600; }
+    .kpi-val { font-size: 1.8rem; font-weight: 800; color: var(--white); line-height: 1.1; }
+
+    /* Configuración n8n */
+    .n8n-bar {
+      margin-bottom: 24px; padding: 16px 20px; border-radius: 20px;
+      background: rgba(112, 38, 232, .12); border: 1px solid var(--soft-30);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+    }
+    .n8n-bar-form { display: flex; flex-wrap: wrap; gap: 10px; flex: 1 1 320px; max-width: 100%; }
+    .n8n-bar-form input {
+      flex: 1 1 220px; width: 100%; min-height: 42px; padding: 8px 14px;
+      border-radius: 12px; border: 1px solid var(--line);
+      background: var(--black); color: var(--white); font: inherit; font-size: .86rem;
+    }
+
+    /* Workspace: Lista + Detalle */
+    .admin-workspace {
+      display: grid; grid-template-columns: 400px 1fr; gap: 24px; align-items: start;
+    }
+    .leads-list-panel { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .filter-row { display: flex; flex-direction: column; gap: 10px; }
+    .search-input {
+      width: 100%; min-height: 42px; padding: 8px 14px;
+      border-radius: 12px; border: 1px solid var(--line);
+      background: var(--black); color: var(--white); font: inherit; font-size: .88rem;
+    }
+    .status-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .status-filters .chip { flex: none; padding: 7px 13px; font-size: .76rem; }
+
+    .leads-items { display: flex; flex-direction: column; gap: 10px; max-height: 640px; overflow-y: auto; padding-right: 4px; }
+    .lead-item {
+      width: 100%; text-align: left; padding: 14px 16px;
+      border-radius: 18px; border: 1.5px solid var(--line);
+      background: rgba(5, 5, 7, .7);
+      display: flex; flex-direction: column; gap: 6px;
+      transition: border-color .2s, background-color .2s, transform .2s;
+    }
+    .lead-item:hover { border-color: var(--soft); transform: translateY(-1px); }
+    .lead-item.is-selected {
+      border-color: var(--soft);
+      background: rgba(112, 38, 232, .22);
+      box-shadow: 0 0 0 1px var(--soft);
+    }
+    .lead-item-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .lead-item-id { font-size: .72rem; font-weight: 700; color: var(--soft); letter-spacing: .08em; }
+    .lead-item-name { font-size: .98rem; font-weight: 700; color: var(--white); word-break: break-word; }
+    .lead-item-meta { font-size: .8rem; color: var(--body); overflow-wrap: anywhere; }
+    .lead-item-date { font-size: .73rem; color: var(--muted); }
+
+    /* Panel de detalle */
+    .lead-detail-panel { padding: 28px; display: flex; flex-direction: column; gap: 24px; }
+    .detail-header {
+      display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+    }
+    .detail-header h2 { font-size: clamp(1.25rem, 2.5vw, 1.55rem); margin: 4px 0; word-break: break-word; }
+    .detail-info-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;
+      padding: 16px; border-radius: 18px; background: rgba(5, 5, 7, .65); border: 1px solid var(--line);
+      margin: 0;
+    }
+    .detail-info-grid dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+    .detail-info-grid dd { margin: 3px 0 0; font-size: .92rem; color: var(--white); font-weight: 600; overflow-wrap: anywhere; word-break: break-word; }
+
+    .action-box {
+      padding: 20px; border-radius: 20px;
+      background: rgba(112, 38, 232, .12); border: 1px solid var(--soft-30);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .action-box h3 { font-size: 1.05rem; }
+    .action-form-row { display: grid; grid-template-columns: 220px 1fr; gap: 14px; align-items: start; }
+    .action-submit-row { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+    .action-feedback {
+      padding: 10px 14px; border-radius: 12px; font-size: .84rem; font-weight: 600;
+      background: rgba(56, 239, 125, .14); border: 1px solid rgba(56, 239, 125, .45); color: #8affb5;
+    }
+
+    .sub-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 20px; }
+    .sub-panel {
+      padding: 18px; border-radius: 18px;
+      background: rgba(5, 5, 7, .65); border: 1px solid var(--line);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .sub-panel h3 { font-size: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .timeline { display: flex; flex-direction: column; gap: 12px; }
+    .timeline-item {
+      padding: 12px 14px; border-radius: 14px;
+      background: rgba(183, 131, 255, .07); border-left: 3px solid var(--evox);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .timeline-action { font-size: .86rem; font-weight: 700; color: var(--white); word-break: break-word; }
+    .timeline-detail { font-size: .82rem; color: var(--body); overflow-wrap: anywhere; word-break: break-word; }
+    .timeline-meta {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px;
+      font-size: .73rem; color: var(--soft); font-weight: 500; margin-top: 2px;
+    }
+
+    @media (max-width: 1080px) {
+      .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+      .admin-workspace { grid-template-columns: 1fr; }
+      .leads-items { max-height: 360px; }
+      .sub-grid, .action-form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .admin-main { padding: 24px 0 60px; }
+      .admin-header-actions .btn { padding: 6px 12px; font-size: .76rem; min-height: 36px; }
+      .login-wrap { margin: 16px auto; padding: 22px 18px; }
+      .login-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .login-head img { width: 58px; }
+      .quick-admin-btn { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .admin-topbar { flex-direction: column; align-items: stretch; gap: 14px; margin-bottom: 20px; }
+      .admin-user-bar { flex-direction: column; align-items: stretch; padding: 12px; border-radius: 16px; }
+      .admin-switcher, .admin-user-bar .btn { width: 100%; }
+      .n8n-bar { padding: 16px; }
+      .n8n-bar-form { flex-direction: column; align-items: stretch; flex-basis: 100%; }
+      .n8n-bar-form input { flex: none; }
+      .n8n-bar-form .btn { width: 100%; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .kpi-card:first-child { grid-column: 1 / -1; }
+      .kpi-card { padding: 14px; border-radius: 16px; }
+      .kpi-val { font-size: 1.5rem; }
+      .leads-list-panel { padding: 16px 14px; }
+      .status-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+      .lead-detail-panel { padding: 18px 14px; gap: 18px; }
+      .detail-info-grid { grid-template-columns: 1fr; padding: 14px; gap: 10px; }
+      .action-box { padding: 16px 14px; }
+      .action-submit-row .btn { width: 100%; }
+      .sub-panel { padding: 14px; }
+    }
+    @media (max-width: 380px) {
+      .admin-header-text-full { display: none; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body class="admin-body">
+  <header class="site-header is-scrolled">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Volver a la landing de Campuslands AI Academy">
+        <img src="assets/img/logo-horizontal-white.webp" width="560" height="126" alt="Campuslands AI Academy" />
+      </a>
+      <div class="admin-header-actions">
+        <a class="btn btn-ghost btn-sm" href="index.html#registro">+ Nuevo registro<span class="admin-header-text-full"> en Landing</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="container">
+      <!-- ===================== VISTA LOGIN ADMIN ===================== -->
+      <section id="admin-login-view" class="card login-wrap" aria-labelledby="login-title">
+        <div class="login-head">
+          <img src="assets/img/visor-analitico.webp" width="240" height="197" alt="" />
+          <div>
+            <p class="rec-kicker">Acceso Administrativo · Reto 4</p>
+            <h1 id="login-title" style="font-size:1.5rem;">Seguimiento de Interesados</h1>
+          </div>
+        </div>
+        <p style="font-size:.9rem;margin-bottom:12px;">Inicia sesión como administrador para consultar las solicitudes de la landing, cambiar su estado (<em>Nuevo, Contactado, En seguimiento, Cerrado</em>), añadir notas y auditar el historial completo.</p>
+
+        <p style="font-size:.78rem;color:var(--soft);font-weight:600;">Cuentas de prueba (toca una para autocompletar):</p>
+        <div class="quick-admins">
+          <button type="button" class="quick-admin-btn" data-quick-email="andres@campuslands.com" data-quick-code="AI-2026">
+            <span><strong>Andrés Cristancho</strong><small>andres@campuslands.com · Coordinador & Community</small></span>
+            <span class="quick-admin-tag">Usar cuenta</span>
+          </button>
+          <button type="button" class="quick-admin-btn" data-quick-email="mafe@campuslands.com" data-quick-code="AI-2026">
+            <span><strong>Mafe Góngora</strong><small>mafe@campuslands.com · Líder Comercial</small></span>
+            <span class="quick-admin-tag">Usar cuenta</span>
+          </button>
+          <button type="button" class="quick-admin-btn" data-quick-email="santiago@campuslands.com" data-quick-code="AI-2026">
+            <span><strong>Santiago Laguado</strong><small>santiago@campuslands.com · Trainer Líder</small></span>
+            <span class="quick-admin-tag">Usar cuenta</span>
+          </button>
+        </div>
+
+        <form id="admin-login-form" class="lead-form" novalidate>
+          <div class="form-alert form-alert-error" id="login-error" role="alert" hidden></div>
+          <div class="form-field">
+            <label for="admin-email">Correo del administrador</label>
+            <input type="email" id="admin-email" value="andres@campuslands.com" required />
+          </div>
+          <div class="form-field">
+            <label for="admin-code">Clave de acceso de prueba</label>
+            <input type="password" id="admin-code" value="AI-2026" required />
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Ingresar al Panel de Administración</button>
+        </form>
+      </section>
+
+      <!-- ===================== VISTA PANEL ADMIN ===================== -->
+      <section id="admin-dashboard-view" hidden aria-label="Panel de seguimiento de interesados">
+        <div class="admin-topbar">
+          <div>
+            <p class="pill" style="margin-bottom:6px;">Centro de Control · Reto 4</p>
+            <h1>Seguimiento de Interesados y Trazabilidad</h1>
+          </div>
+          <div class="admin-user-bar">
+            <label for="active-admin-select">Administrador activo:</label>
+            <select id="active-admin-select" class="admin-switcher" aria-label="Cambiar administrador activo para pruebas de seguimiento"></select>
+            <button type="button" class="btn btn-ghost btn-sm" id="admin-logout-btn">Cerrar sesión</button>
+          </div>
+        </div>
+
+        <!-- Configuración opcional de Webhook n8n (sin credenciales en código) -->
+        <div class="n8n-bar">
+          <div>
+            <strong style="color:var(--white);font-size:.92rem;display:block;">Conexión Webhook n8n → Telegram</strong>
+            <span style="font-size:.8rem;color:var(--body);">Configura aquí la URL de tu Webhook de n8n (se guarda localmente en tu navegador, fuera del repositorio).</span>
+          </div>
+          <form id="n8n-config-form" class="n8n-bar-form">
+            <input type="url" id="n8n-webhook-url" placeholder="https://tu-instancia-n8n.app/webhook/lead-ai-academy" aria-label="URL del Webhook de n8n" />
+            <button type="submit" class="btn btn-primary btn-sm">Guardar Webhook</button>
+            <span id="n8n-save-msg" style="font-size:.78rem;color:var(--soft);align-self:center;" hidden>¡Guardado!</span>
+          </form>
+        </div>
+
+        <!-- KPIs por estado -->
+        <div class="kpi-grid" aria-label="Resumen por estado">
+          <div class="kpi-card"><span class="kpi-label">Total registros</span><span class="kpi-val" data-kpi="total">0</span></div>
+          <div class="kpi-card"><span class="kpi-label">Nuevo</span><span class="kpi-val" style="color:var(--soft)" data-kpi="Nuevo">0</span></div>
+          <div class="kpi-card"><span class="kpi-label">Contactado</span><span class="kpi-val" data-kpi="Contactado">0</span></div>
+          <div class="kpi-card"><span class="kpi-label">En seguimiento</span><span class="kpi-val" data-kpi="En seguimiento">0</span></div>
+          <div class="kpi-card"><span class="kpi-label">Cerrado</span><span class="kpi-val" style="color:var(--muted)" data-kpi="Cerrado">0</span></div>
+        </div>
+
+        <div class="admin-workspace">
+          <!-- Columna izquierda: lista de interesados -->
+          <aside class="card leads-list-panel" aria-label="Listado de registros">
+            <div class="filter-row">
+              <input type="search" id="lead-search" class="search-input" placeholder="Buscar por nombre, correo, programa o ID..." aria-label="Buscar registros" />
+              <div class="status-filters" role="toolbar" aria-label="Filtrar por estado">
+                <button type="button" class="chip is-active" data-status-filter="ALL">Todos</button>
+                <button type="button" class="chip" data-status-filter="Nuevo">Nuevo</button>
+                <button type="button" class="chip" data-status-filter="Contactado">Contactado</button>
+                <button type="button" class="chip" data-status-filter="En seguimiento">En seguimiento</button>
+                <button type="button" class="chip" data-status-filter="Cerrado">Cerrado</button>
+              </div>
+            </div>
+            <div id="leads-items" class="leads-items" role="list"></div>
+          </aside>
+
+          <!-- Columna derecha: detalle, cambio de estado, notas e historial -->
+          <div class="card lead-detail-panel" id="lead-detail-panel" aria-live="polite">
+            <p style="color:var(--muted);">Selecciona un registro de la lista para ver su detalle, cambiar su estado, añadir notas y consultar su historial.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/leads-store.js" defer></script>
+  <script src="js/admin.js" defer></script>
+</body>
+</html>

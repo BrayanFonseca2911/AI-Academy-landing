@@ -491,22 +491,27 @@
   const PLAN_META = {
     ignition: {
       name: 'Ignition', dur: '4 horas', cta: 'Inscríbete en Ignition',
+      programValue: 'Ignition (4 horas)',
       why: 'Ideal para dar el primer salto en medio día: entiendes cómo impacta la IA en tu trabajo, dominas un asistente diario y creas tu primer agente en vivo.'
     },
     booster: {
       name: 'Booster', dur: '8 horas', cta: 'Inscríbete en Booster',
+      programValue: 'Booster (8 horas)',
       why: 'Perfecta cuando necesitas resultados precisos para tu rol: técnicas de prompting profesional, dos herramientas a fondo y agentes hechos para tus tareas.'
     },
     liftoff: {
       name: 'Liftoff', dur: '12 horas', cta: 'Inscríbete en Liftoff',
+      programValue: 'Liftoff (12 horas)',
       why: 'Tu misión si buscas escalar y automatizar: suma n8n para conectar procesos reales y dejar flujos automáticos trabajando para tu operación.'
     },
     odyssey: {
       name: 'Odyssey', dur: 'Personalizado', cta: 'Inscríbete en Odyssey',
+      programValue: 'Odyssey (Personalizado)',
       why: 'Diseñada 100 % a la medida de tu empresa: elegimos juntos las herramientas, la duración y los casos de uso según tu industria y tus equipos.'
     },
     nebula: {
       name: 'Nebula', dur: 'Pregrabado · 24/7', cta: 'Accede a Nebula',
+      programValue: 'Nebula (Pregrabado)',
       why: 'Aprendes a tu propio ritmo con acceso 24/7 por niveles, evaluaciones continuas y comunidad activa para resolver dudas.'
     }
   };
@@ -563,6 +568,7 @@
       recDur.textContent = meta.dur;
       recWhy.textContent = meta.why;
       recCta.textContent = meta.cta;
+      recCta.dataset.selectProgram = meta.programValue;
       resultBox.hidden = false;
       resultBox.focus();
       highlightRecommendedMission(chosenKey);
@@ -799,5 +805,163 @@
     // En celular arrancamos en modo interactivo de tarjeta con foco (After/Before con 1 toque o swipe)
     // y en computador arrancamos con las dos tarjetas cara a cara (split)
     applyMix(window.innerWidth <= 920 ? 0 : 50);
+  }
+
+  // =========================================================
+  // 07 · FORMULARIO DE REGISTRO Y NOTIFICACIÓN TELEGRAM / N8N (RETO 4)
+  // =========================================================
+  const leadForm = $('#lead-form');
+  const leadConf = $('#lead-confirmation');
+  const leadProgramSelect = $('#lead-program');
+  const leadNameInput = $('#lead-name');
+  const leadEmailInput = $('#lead-email');
+  const leadPhoneInput = $('#lead-phone');
+  const globalError = $('#lead-form-global-error');
+  const newLeadBtn = $('#lead-new-btn');
+  const submitBtn = $('#lead-submit-btn');
+
+  // Preseleccionar programa al hacer clic en cualquier botón "Inscríbete en X"
+  $$('[data-select-program]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const prog = btn.dataset.selectProgram;
+      if (leadProgramSelect && prog) {
+        leadProgramSelect.value = prog;
+        if (leadForm && leadConf && !leadConf.hidden) {
+          leadConf.hidden = true;
+          leadForm.hidden = false;
+        }
+        setTimeout(() => {
+          if (leadNameInput) leadNameInput.focus();
+        }, 350);
+      }
+    });
+  });
+
+  if (leadForm && window.AIAcademyStore) {
+    const fieldMap = {
+      name: { input: leadNameInput, err: $('#err-lead-name') },
+      email: { input: leadEmailInput, err: $('#err-lead-email') },
+      program: { input: leadProgramSelect, err: $('#err-lead-program') },
+      phone: { input: leadPhoneInput, err: $('#err-lead-phone') }
+    };
+
+    const clearFieldErrors = () => {
+      if (globalError) {
+        globalError.hidden = true;
+        globalError.textContent = '';
+      }
+      Object.values(fieldMap).forEach(({ input, err }) => {
+        if (input) input.removeAttribute('aria-invalid');
+        if (err) {
+          err.hidden = true;
+          err.textContent = '';
+        }
+      });
+    };
+
+    const showFieldErrors = (errors) => {
+      let firstInvalid = null;
+      Object.entries(errors).forEach(([key, msg]) => {
+        const entry = fieldMap[key];
+        if (!entry) return;
+        if (entry.input) {
+          entry.input.setAttribute('aria-invalid', 'true');
+          if (!firstInvalid) firstInvalid = entry.input;
+        }
+        if (entry.err) {
+          entry.err.textContent = msg;
+          entry.err.hidden = false;
+        }
+      });
+      if (globalError) {
+        globalError.textContent = 'Revisa los campos marcados. No se generó ningún registro ni aviso por Telegram porque faltan datos obligatorios o tienen formato inválido.';
+        globalError.hidden = false;
+      }
+      if (firstInvalid) firstInvalid.focus();
+    };
+
+    // Limpiar error individual cuando el usuario corrige el campo
+    Object.entries(fieldMap).forEach(([key, { input, err }]) => {
+      if (!input) return;
+      input.addEventListener('input', () => {
+        input.removeAttribute('aria-invalid');
+        if (err) {
+          err.hidden = true;
+          err.textContent = '';
+        }
+      });
+    });
+
+    leadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearFieldErrors();
+
+      const raw = {
+        name: leadNameInput?.value || '',
+        email: leadEmailInput?.value || '',
+        program: leadProgramSelect?.value || '',
+        phone: leadPhoneInput?.value || ''
+      };
+
+      const check = window.AIAcademyStore.validateLeadInput(raw);
+      if (!check.valid) {
+        showFieldErrors(check.errors);
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.querySelector('span').textContent = 'Guardando y notificando por Telegram...';
+      }
+
+      const result = await window.AIAcademyStore.createLead(raw);
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.querySelector('span').textContent = 'Enviar solicitud y notificar al equipo';
+      }
+
+      if (!result.ok) {
+        showFieldErrors(result.errors || {});
+        return;
+      }
+
+      const { lead, notification } = result;
+      $('[data-conf-id]').textContent = lead.id;
+      $('[data-conf-date]').textContent = window.AIAcademyStore.formatDateTime(lead.createdAt);
+      $('[data-conf-name]').textContent = lead.name;
+      $('[data-conf-email]').textContent = lead.email;
+      $('[data-conf-program]').textContent = lead.program;
+      $('[data-conf-phone]').textContent = lead.phone ? lead.phone : 'No proporcionado';
+      $('[data-conf-tg-text]').innerHTML = window.AIAcademyStore.formatTelegramHtml
+        ? window.AIAcademyStore.formatTelegramHtml(lead.telegramMessage)
+        : lead.telegramMessage;
+
+      const modeBadge = $('[data-conf-n8n-mode]');
+      if (modeBadge) {
+        modeBadge.textContent = notification.sentToRemote
+          ? 'Enviado a Webhook n8n'
+          : 'Aviso Telegram listo';
+      }
+
+      const adminLink = $('[data-conf-admin-link]');
+      if (adminLink) {
+        adminLink.href = `admin.html?id=${encodeURIComponent(lead.id)}`;
+      }
+
+      leadForm.reset();
+      leadForm.hidden = true;
+      leadConf.hidden = false;
+      leadConf.focus();
+    });
+
+    if (newLeadBtn) {
+      newLeadBtn.addEventListener('click', () => {
+        clearFieldErrors();
+        leadConf.hidden = true;
+        leadForm.hidden = false;
+        if (leadNameInput) leadNameInput.focus();
+      });
+    }
   }
 })();
