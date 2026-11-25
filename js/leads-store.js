@@ -82,15 +82,22 @@
   // ---------- Validación estricta ----------
   function validateLeadInput(raw) {
     const errors = {};
-    const name = String(raw?.name ?? '').trim();
+    const name = String(raw?.name ?? '').trim().replace(/\s+/g, ' ');
     const email = String(raw?.email ?? '').trim();
     const program = String(raw?.program ?? '').trim();
     const phone = String(raw?.phone ?? '').trim();
 
+    // Solo letras (incluyendo tildes, diéresis y ñ) y espacios; sin números
+    const nameOnlyLettersRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*$/;
+
     if (!name) {
       errors.name = 'El nombre es obligatorio.';
+    } else if (/\d/.test(name)) {
+      errors.name = 'El nombre no puede contener números, solo letras.';
+    } else if (!nameOnlyLettersRegex.test(name)) {
+      errors.name = 'El nombre solo puede contener letras y espacios (sin números ni símbolos).';
     } else if (name.length < 3) {
-      errors.name = 'Ingresa un nombre válido (mínimo 3 caracteres).';
+      errors.name = 'Ingresa un nombre válido (mínimo 3 letras).';
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -105,9 +112,15 @@
     }
 
     if (phone) {
-      const cleanPhone = phone.replace(/[\s\-().+]/g, '');
-      if (!/^\d{7,15}$/.test(cleanPhone)) {
-        errors.phone = 'El teléfono es opcional, pero si lo ingresas debe tener entre 7 y 15 dígitos.';
+      if (/[A-Za-zÁÉÍÓÚáéíóúÑñÜü]/.test(phone)) {
+        errors.phone = 'El teléfono no puede contener letras, solo números.';
+      } else if (!/^[0-9+\s\-()]+$/.test(phone)) {
+        errors.phone = 'El teléfono solo puede contener números.';
+      } else {
+        const digitsOnly = phone.replace(/\D/g, '');
+        if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+          errors.phone = 'El teléfono debe tener entre 7 y 15 números.';
+        }
       }
     }
 

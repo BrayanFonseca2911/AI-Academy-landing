@@ -32,10 +32,10 @@
             {
               "id": "cond-nombre",
               "leftValue": "={{ $json.body.nombre }}",
-              "rightValue": "",
+              "rightValue": "^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\\s]{3,}$",
               "operator": {
                 "type": "string",
-                "operation": "notEmpty"
+                "operation": "regex"
               }
             },
             {

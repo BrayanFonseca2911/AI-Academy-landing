@@ -617,6 +617,13 @@ input[type="range"]:focus-visible { outline: 3px solid var(--soft); outline-offs
   border-color: #ff6b8b;
   box-shadow: 0 0 0 3px rgba(255, 107, 139, .2);
 }
+.form-field input:-webkit-autofill,
+.form-field input:-webkit-autofill:hover,
+.form-field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--white);
+  -webkit-box-shadow: 0 0 0 1000px #0b0a12 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
 .field-error {
   font-size: .8rem; font-weight: 500; color: #ff8fa6;
   margin-top: 2px;

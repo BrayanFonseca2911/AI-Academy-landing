@@ -880,14 +880,34 @@
       if (firstInvalid) firstInvalid.focus();
     };
 
-    // Limpiar error individual cuando el usuario corrige el campo
+    // Validar en tiempo real mientras escribe (ej. si mete números en el nombre o letras en el teléfono)
     Object.entries(fieldMap).forEach(([key, { input, err }]) => {
       if (!input) return;
       input.addEventListener('input', () => {
-        input.removeAttribute('aria-invalid');
-        if (err) {
-          err.hidden = true;
-          err.textContent = '';
+        const val = input.value;
+        let instantErr = '';
+        if (key === 'name' && /\d/.test(val)) {
+          instantErr = 'El nombre no puede contener números, solo letras.';
+        } else if (key === 'name' && val.trim() && !/^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(val)) {
+          instantErr = 'El nombre solo puede contener letras y espacios.';
+        } else if (key === 'phone' && /[A-Za-zÁÉÍÓÚáéíóúÑñÜü]/.test(val)) {
+          instantErr = 'El teléfono no puede contener letras, solo números.';
+        } else if (key === 'phone' && val.trim() && !/^[0-9+\s\-()]+$/.test(val)) {
+          instantErr = 'El teléfono solo puede contener números.';
+        }
+
+        if (instantErr) {
+          input.setAttribute('aria-invalid', 'true');
+          if (err) {
+            err.textContent = instantErr;
+            err.hidden = false;
+          }
+        } else {
+          input.removeAttribute('aria-invalid');
+          if (err) {
+            err.hidden = true;
+            err.textContent = '';
+          }
         }
       });
     });
