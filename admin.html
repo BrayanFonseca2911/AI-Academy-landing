@@ -45,6 +45,14 @@
       text-align: left; font-size: .85rem; transition: border-color .2s, background-color .2s;
     }
     .quick-admin-btn:hover { border-color: var(--soft); background: var(--soft-10); }
+    .quick-admin-btn.is-selected {
+      border-color: var(--soft);
+      background: rgba(112, 38, 232, .22);
+      box-shadow: 0 0 0 1px var(--soft);
+    }
+    .quick-admin-btn.is-selected .quick-admin-tag {
+      background: var(--soft); color: var(--black); border-color: var(--soft);
+    }
     .quick-admin-btn strong { color: var(--white); display: block; }
     .quick-admin-btn small { color: var(--muted); font-size: .76rem; display: block; word-break: break-word; }
     .quick-admin-tag {
@@ -243,11 +251,11 @@
           <div class="form-alert form-alert-error" id="login-error" role="alert" hidden></div>
           <div class="form-field">
             <label for="admin-email">Correo del administrador</label>
-            <input type="email" id="admin-email" value="andres@campuslands.com" required />
+            <input type="email" id="admin-email" placeholder="Selecciona una cuenta arriba o escribe el correo..." required />
           </div>
           <div class="form-field">
             <label for="admin-code">Clave de acceso de prueba</label>
-            <input type="password" id="admin-code" value="AI-2026" required />
+            <input type="password" id="admin-code" placeholder="Clave de acceso (ej. AI-2026)" required />
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%;">Ingresar al Panel de Administración</button>
         </form>

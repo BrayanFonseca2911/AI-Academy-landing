@@ -80,11 +80,20 @@
     renderAll();
   }
 
-  $$('[data-quick-email]').forEach((btn) => {
+  const quickBtns = $$('[data-quick-email]');
+  quickBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       emailInput.value = btn.dataset.quickEmail;
       codeInput.value = btn.dataset.quickCode;
-      loginForm.requestSubmit();
+      if (loginError) loginError.hidden = true;
+      quickBtns.forEach((b) => {
+        const isSel = b === btn;
+        b.classList.toggle('is-selected', isSel);
+        const tag = b.querySelector('.quick-admin-tag');
+        if (tag) tag.textContent = isSel ? '✓ Autocompletado' : 'Usar cuenta';
+      });
+      const submitBtn = loginForm?.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.focus();
     });
   });
 
